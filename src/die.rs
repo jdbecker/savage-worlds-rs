@@ -22,6 +22,18 @@ impl Die {
         Die::dx(6)
     }
 
+    pub fn d8() -> Die {
+        Die::dx(8)
+    }
+
+    pub fn d10() -> Die {
+        Die::dx(10)
+    }
+
+    pub fn d12() -> Die {
+        Die::dx(12)
+    }
+
     pub fn roll(&self) -> u8 {
         rand::thread_rng().gen_range(self.min, self.max + 1)
     }
@@ -31,27 +43,64 @@ impl Die {
 mod tests {
     use super::*;
 
+    fn roll(d: &Die) -> u8 {
+        let r = d.roll();
+        assert!(r >= d.min, "die roll was {}", r);
+        assert!(r <= d.max, "die roll was {}", r);
+        r
+    }
+
     #[test]
-    fn can_roll_dx() {
+    fn can_roll_1_on_dx() {
         let d = Die::dx(2);
-        let r = d.roll();
-        assert!(r >= 1, "die roll was {}", r);
-        assert!(r <= 2, "die roll was {}", r);
+        let mut r = roll(&d);
+        while r != 1 {
+            r = roll(&d);
+        }
     }
 
     #[test]
-    fn can_roll_d4() {
+    fn can_roll_4_on_d4() {
         let d = Die::d4();
-        let r = d.roll();
-        assert!(r >= 1, "die roll was {}", r);
-        assert!(r <= 4, "die roll was {}", r);
+        let mut r = roll(&d);
+        while r != 4 {
+            r = roll(&d);
+        }
     }
 
     #[test]
-    fn can_roll_d6() {
+    fn can_roll_6_on_d6() {
         let d = Die::d6();
-        let r = d.roll();
-        assert!(r >= 1, "die roll was {}", r);
-        assert!(r <= 6, "die roll was {}", r);
+        let mut r = roll(&d);
+        while r != 6 {
+            r = roll(&d);
+        }
+    }
+
+    #[test]
+    fn can_roll_8_on_d8() {
+        let d = Die::d8();
+        let mut r = roll(&d);
+        while r != 8 {
+            r = roll(&d);
+        }
+    }
+
+    #[test]
+    fn can_roll_10_on_d10() {
+        let d = Die::d10();
+        let mut r = roll(&d);
+        while r != 10 {
+            r = roll(&d);
+        }
+    }
+
+    #[test]
+    fn can_roll_12_on_d12() {
+        let d = Die::d12();
+        let mut r = roll(&d);
+        while r != 12 {
+            r = roll(&d);
+        }
     }
 }
