@@ -1,3 +1,5 @@
+pub mod die;
+
 #[cfg(test)]
 mod tests {
     #[test]
