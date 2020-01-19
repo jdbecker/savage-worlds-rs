@@ -1,3 +1,4 @@
+pub mod attribute;
 pub mod die;
 
 #[cfg(test)]
