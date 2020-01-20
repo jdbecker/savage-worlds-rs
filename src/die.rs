@@ -23,6 +23,16 @@ impl Die {
     pub fn roll(&self) -> u8 {
         rand::thread_rng().gen_range(1, self.max() + 1)
     }
+
+    pub fn roll_explode(&self) -> u8 {
+        let mut total = 0;
+        let mut roll = self.max();
+        while roll == self.max() {
+            roll = self.roll();
+            total += roll;
+        }
+        total
+    }
 }
 
 #[cfg(test)]
@@ -33,6 +43,20 @@ mod tests {
         let r = d.roll();
         assert!(r >= 1, "die roll was {}", r);
         assert!(r <= d.max(), "die roll was {}", r);
+        r
+    }
+
+    fn roll_until_explode(d: &Die) -> u8 {
+        let mut r = 0;
+        while r < d.max() {
+            r = d.roll_explode();
+            assert!(r >= 1, "die roll was {}", r);
+            assert_ne!(
+                r % d.max(),
+                0,
+                "exploding die result shouldn't be divisible by max"
+            );
+        }
         r
     }
 
@@ -88,5 +112,23 @@ mod tests {
         while r != 12 {
             r = roll(&d);
         }
+    }
+
+    #[test]
+    fn explode_mod_not_zero() {
+        let d = Die::d4;
+        let r = roll_until_explode(&d);
+        assert!(r > 4, "die roll was {}", r)
+    }
+
+    #[test]
+    fn roll_explode_not_always() {
+        let d = Die::d12;
+        let mut r = 12;
+        while r >= 12 {
+            r = d.roll_explode();
+        }
+        assert!(r >= 1, "die roll was {}", r);
+        assert!(r < 12, "die roll was {}", r);
     }
 }
