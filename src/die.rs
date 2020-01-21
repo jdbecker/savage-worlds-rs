@@ -25,13 +25,12 @@ impl Die {
     }
 
     pub fn roll_explode(&self) -> u8 {
-        let mut total = 0;
-        let mut roll = self.max();
-        while roll == self.max() {
-            roll = self.roll();
-            total += roll;
+        let result = self.roll();
+        if result == self.max() {
+            result + self.roll_explode()
+        } else {
+            result
         }
-        total
     }
 }
 
