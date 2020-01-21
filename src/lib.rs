@@ -1,5 +1,6 @@
 pub mod attribute;
 pub mod die;
+pub mod roll_result;
 
 #[cfg(test)]
 mod tests {
