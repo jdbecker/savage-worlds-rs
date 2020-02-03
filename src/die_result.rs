@@ -6,7 +6,7 @@ pub struct DieResult {
 }
 
 impl DieResult {
-    fn summarize(&self) -> String {
+    pub fn summarize(&self) -> String {
         if self.roll > self.die.max() {
             let max_rolls: Vec<String> =
                 vec![self.die.max().to_string(); (self.roll / self.die.max()) as usize];
@@ -18,7 +18,7 @@ impl DieResult {
                 self.roll % self.die.max()
             )
         } else {
-            format!("[{:?}:{}({})]", self.die, self.roll, self.roll)
+            format!("[{:?}:{}]", self.die, self.roll)
         }
     }
 }
@@ -31,7 +31,7 @@ mod tests {
     #[test]
     fn simple_die_result() {
         let r = DieResult { die: d4, roll: 3 };
-        assert_eq!("[d4:3(3)]", r.summarize())
+        assert_eq!("[d4:3]", r.summarize())
     }
 
     #[test]
