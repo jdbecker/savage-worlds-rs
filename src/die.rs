@@ -12,7 +12,7 @@ pub enum Die {
 }
 
 impl Die {
-    pub fn max(&self) -> u8 {
+    pub fn max(self) -> u8 {
         match self {
             Die::d4 => 4,
             Die::d6 => 6,
