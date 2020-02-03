@@ -1,6 +1,7 @@
+use crate::die_result::DieResult;
 use rand::Rng;
 
-#[derive(PartialEq, Debug)]
+#[derive(PartialEq, Debug, Copy, Clone)]
 pub enum Die {
     d4,
     d6,
@@ -20,14 +21,24 @@ impl Die {
         }
     }
 
-    pub fn roll(&self) -> u8 {
-        rand::thread_rng().gen_range(1, self.max() + 1)
+    pub fn roll(self) -> DieResult {
+        DieResult {
+            die: self,
+            result: rand::thread_rng().gen_range(1, self.max() + 1),
+        }
     }
 
-    pub fn roll_explode(&self) -> u8 {
-        let result = self.roll();
+    pub fn roll_explode(self) -> DieResult {
+        DieResult {
+            die: self,
+            result: self.calc_explode(),
+        }
+    }
+
+    fn calc_explode(self) -> u8 {
+        let result = self.roll().result;
         if result == self.max() {
-            result + self.roll_explode()
+            result + self.calc_explode()
         } else {
             result
         }
@@ -39,7 +50,7 @@ mod tests {
     use super::*;
 
     fn roll(d: &Die) -> u8 {
-        let r = d.roll();
+        let r = d.roll().result;
         assert!(r >= 1, "die roll was {}", r);
         assert!(r <= d.max(), "die roll was {}", r);
         r
@@ -48,7 +59,7 @@ mod tests {
     fn roll_until_explode(d: &Die) -> u8 {
         let mut r = 0;
         while r < d.max() {
-            r = d.roll_explode();
+            r = d.roll_explode().result;
             assert!(r >= 1, "die roll was {}", r);
             assert_ne!(
                 r % d.max(),
@@ -125,7 +136,7 @@ mod tests {
         let d = Die::d12;
         let mut r = 12;
         while r >= 12 {
-            r = d.roll_explode();
+            r = d.roll_explode().result;
         }
         assert!(r >= 1, "die roll was {}", r);
         assert!(r < 12, "die roll was {}", r);
