@@ -8,7 +8,7 @@ pub struct DiceResult {
 
 impl DiceResult {
     pub fn total(&self) -> u8 {
-        self.results.iter().map(|d| d.roll).sum::<u8>() + self.modifier
+        self.results.iter().map(|d| d.result).sum::<u8>() + self.modifier
     }
 
     pub fn summarize_total(&self) -> String {
@@ -16,7 +16,7 @@ impl DiceResult {
     }
 
     pub fn max(&self) -> u8 {
-        self.results.iter().map(|d| d.roll).max().unwrap_or(0) + self.modifier
+        self.results.iter().map(|d| d.result).max().unwrap_or(0) + self.modifier
     }
 
     pub fn summarize_max(&self) -> String {
@@ -50,7 +50,7 @@ mod tests {
     fn simple_total() {
         let d1 = DieResult {
             die: Die::d4,
-            roll: 3,
+            result: 3,
         };
         let r = DiceResult {
             results: vec![d1],
@@ -63,11 +63,11 @@ mod tests {
     fn multi_total() {
         let d1 = DieResult {
             die: Die::d4,
-            roll: 3,
+            result: 3,
         };
         let d2 = DieResult {
             die: Die::d6,
-            roll: 4,
+            result: 4,
         };
         let r = DiceResult {
             results: vec![d1, d2],
@@ -80,11 +80,11 @@ mod tests {
     fn multi_total_modifier() {
         let d1 = DieResult {
             die: Die::d4,
-            roll: 2,
+            result: 2,
         };
         let d2 = DieResult {
             die: Die::d6,
-            roll: 5,
+            result: 5,
         };
         let r = DiceResult {
             results: vec![d1, d2],
@@ -97,11 +97,11 @@ mod tests {
     fn multi_max() {
         let d1 = DieResult {
             die: Die::d4,
-            roll: 4,
+            result: 4,
         };
         let d2 = DieResult {
             die: Die::d6,
-            roll: 2,
+            result: 2,
         };
         let r = DiceResult {
             results: vec![d1, d2],
@@ -114,11 +114,11 @@ mod tests {
     fn multi_max_modifier() {
         let d1 = DieResult {
             die: Die::d4,
-            roll: 3,
+            result: 3,
         };
         let d2 = DieResult {
             die: Die::d6,
-            roll: 6,
+            result: 6,
         };
         let r = DiceResult {
             results: vec![d1, d2],
@@ -131,11 +131,11 @@ mod tests {
     fn display_total_no_modifier() {
         let d1 = DieResult {
             die: Die::d4,
-            roll: 3,
+            result: 3,
         };
         let d2 = DieResult {
             die: Die::d6,
-            roll: 7,
+            result: 7,
         };
         let r = DiceResult {
             results: vec![d1, d2],
@@ -148,11 +148,11 @@ mod tests {
     fn display_total_modifier() {
         let d1 = DieResult {
             die: Die::d4,
-            roll: 9,
+            result: 9,
         };
         let d2 = DieResult {
             die: Die::d6,
-            roll: 8,
+            result: 8,
         };
         let r = DiceResult {
             results: vec![d1, d2],
@@ -165,11 +165,11 @@ mod tests {
     fn display_max_no_modifier() {
         let d1 = DieResult {
             die: Die::d4,
-            roll: 9,
+            result: 9,
         };
         let d2 = DieResult {
             die: Die::d6,
-            roll: 4,
+            result: 4,
         };
         let r = DiceResult {
             results: vec![d1, d2],
@@ -182,11 +182,11 @@ mod tests {
     fn display_max_modifier() {
         let d1 = DieResult {
             die: Die::d4,
-            roll: 7,
+            result: 7,
         };
         let d2 = DieResult {
             die: Die::d6,
-            roll: 8,
+            result: 8,
         };
         let r = DiceResult {
             results: vec![d1, d2],
