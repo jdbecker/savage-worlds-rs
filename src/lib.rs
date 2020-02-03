@@ -1,7 +1,7 @@
 pub mod attribute;
+pub mod dice_result;
 pub mod die;
 pub mod die_result;
-pub mod roll_result;
 
 #[cfg(test)]
 mod tests {
