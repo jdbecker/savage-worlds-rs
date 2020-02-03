@@ -1,6 +1,7 @@
 use crate::die_result::DieResult;
 use rand::Rng;
 
+#[allow(non_camel_case_types)]
 #[derive(PartialEq, Debug, Copy, Clone)]
 pub enum Die {
     d4,

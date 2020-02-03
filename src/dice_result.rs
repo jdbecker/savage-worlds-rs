@@ -1,4 +1,3 @@
-use crate::die::Die;
 use crate::die_result::DieResult;
 
 pub struct DiceResult {
@@ -44,7 +43,7 @@ impl DiceResult {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::die::Die::{d4, d6};
+    use crate::die::Die;
 
     #[test]
     fn simple_total() {
