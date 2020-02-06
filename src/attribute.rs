@@ -1,3 +1,4 @@
+use crate::character_trait::CharacterTrait;
 use crate::dice_result::DiceResult;
 use crate::die::Die;
 
@@ -10,15 +11,17 @@ impl Attribute {
     pub fn new(die: Die) -> Attribute {
         Attribute { die, modifier: 0 }
     }
+}
 
-    pub fn roll(&self) -> DiceResult {
+impl CharacterTrait for Attribute {
+    fn roll(&self) -> DiceResult {
         DiceResult {
             results: vec![self.die.roll_explode()],
             modifier: self.modifier,
         }
     }
 
-    pub fn roll_wildcard(&self) -> DiceResult {
+    fn roll_wildcard(&self) -> DiceResult {
         DiceResult {
             results: vec![self.die.roll_explode(), Die::d6.roll_explode()],
             modifier: self.modifier,
