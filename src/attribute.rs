@@ -7,6 +7,10 @@ pub struct Attribute {
 }
 
 impl Attribute {
+    pub fn new(die: Die) -> Attribute {
+        Attribute { die, modifier: 0 }
+    }
+
     pub fn roll(&self) -> DiceResult {
         DiceResult {
             results: vec![self.die.roll_explode()],
