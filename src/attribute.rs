@@ -17,14 +17,14 @@ impl CharacterTrait for Attribute {
     fn roll(&self) -> DiceResult {
         DiceResult {
             results: vec![self.die.roll_explode()],
-            modifier: self.modifier,
+            modifier: self.modifier as i8,
         }
     }
 
     fn roll_wildcard(&self) -> DiceResult {
         DiceResult {
             results: vec![self.die.roll_explode(), Die::d6.roll_explode()],
-            modifier: self.modifier,
+            modifier: self.modifier as i8,
         }
     }
 }

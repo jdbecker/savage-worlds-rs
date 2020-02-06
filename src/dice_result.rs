@@ -2,20 +2,25 @@ use crate::die_result::DieResult;
 
 pub struct DiceResult {
     pub results: Vec<DieResult>,
-    pub modifier: u8,
+    pub modifier: i8,
 }
 
 impl DiceResult {
-    pub fn total(&self) -> u8 {
-        self.results.iter().map(|d| d.result).sum::<u8>() + self.modifier
+    pub fn total(&self) -> i8 {
+        self.results.iter().map(|d| d.result).sum::<u8>() as i8 + self.modifier
     }
 
     pub fn summarize_total(&self) -> String {
         format!("{} = {}", self.total(), self.summarize_right(" + "))
     }
 
-    pub fn max(&self) -> u8 {
-        self.results.iter().map(|d| d.result).max().unwrap_or(0) + self.modifier
+    pub fn max(&self) -> i8 {
+        self.results
+            .iter()
+            .map(|d| d.result as i8)
+            .max()
+            .unwrap_or(0)
+            + self.modifier
     }
 
     pub fn summarize_max(&self) -> String {
@@ -42,8 +47,9 @@ impl DiceResult {
 
 #[cfg(test)]
 mod tests {
-    use super::*;
     use crate::die::Die;
+
+    use super::*;
 
     #[test]
     fn simple_total() {
