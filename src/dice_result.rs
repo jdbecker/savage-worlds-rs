@@ -133,6 +133,32 @@ mod tests {
     }
 
     #[test]
+    fn can_roll_negative() {
+        let d = DieResult {
+            die: Die::d4,
+            result: 1,
+        };
+        let r = DiceResult {
+            results: vec![d],
+            modifier: -2,
+        };
+        assert_eq!(r.total(), -1);
+    }
+
+    #[test]
+    fn can_roll_negative_summary() {
+        let d = DieResult {
+            die: Die::d4,
+            result: 1,
+        };
+        let r = DiceResult {
+            results: vec![d],
+            modifier: -2,
+        };
+        assert_eq!(r.summarize_total(), "-1 = -2 + [d4:1]");
+    }
+
+    #[test]
     fn display_total_no_modifier() {
         let d1 = DieResult {
             die: Die::d4,
