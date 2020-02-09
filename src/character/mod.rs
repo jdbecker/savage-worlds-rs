@@ -1,22 +1,12 @@
-use crate::attribute::Attribute;
-use crate::die::Die;
+use crate::character::attributes::Attributes;
+use crate::character::skills::Skills;
+
+mod attributes;
+mod skills;
 
 pub struct Character {
-    agility: Attribute,
-    smarts: Attribute,
-    spirit: Attribute,
-    strength: Attribute,
-    vigor: Attribute,
+    attributes: Attributes,
+    skills: Skills,
 }
 
-impl Character {
-    pub fn new() -> Character {
-        Character {
-            agility: Attribute::new(Die::d4),
-            smarts: Attribute::new(Die::d4),
-            spirit: Attribute::new(Die::d4),
-            strength: Attribute::new(Die::d4),
-            vigor: Attribute::new(Die::d4),
-        }
-    }
-}
+impl Character {}
