@@ -1,4 +1,4 @@
-use crate::character_trait::CharacterTrait;
+use crate::character::character_trait::CharacterTrait;
 use crate::dice_result::DiceResult;
 use crate::die::Die;
 

@@ -1,5 +1,5 @@
-use crate::attribute::Attribute;
-use crate::character_trait::CharacterTrait;
+use crate::character::attribute::Attribute;
+use crate::character::character_trait::CharacterTrait;
 use crate::dice_result::DiceResult;
 use crate::die::Die;
 

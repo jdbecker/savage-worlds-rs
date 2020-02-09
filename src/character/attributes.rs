@@ -1,4 +1,4 @@
-use crate::attribute::Attribute;
+use crate::character::attribute::Attribute;
 
 pub struct Attributes {
     agility: Attribute,

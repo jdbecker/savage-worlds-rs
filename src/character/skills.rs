@@ -1,4 +1,4 @@
-use crate::skill::Skill;
+use crate::character::skill::Skill;
 
 pub struct Skills {
     academics: Skill,
