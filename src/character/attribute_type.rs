@@ -1,4 +1,4 @@
-pub enum AttributeTypes {
+pub enum AttributeType {
     Agility,
     Smarts,
     Spirit,

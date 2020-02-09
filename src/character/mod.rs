@@ -2,7 +2,7 @@ use crate::character::attributes::Attributes;
 use crate::character::skills::Skills;
 
 mod attribute;
-mod attribute_types;
+mod attribute_type;
 mod attributes;
 mod character_trait;
 mod rank;
