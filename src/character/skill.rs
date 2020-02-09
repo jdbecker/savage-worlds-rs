@@ -1,16 +1,16 @@
-use crate::character::attribute::Attribute;
+use crate::character::attribute_type::AttributeType;
 use crate::character::character_trait::CharacterTrait;
 use crate::dice_result::DiceResult;
 use crate::die::Die;
 
 pub struct Skill {
-    pub attribute: Attribute,
+    pub attribute: AttributeType,
     pub die: Die,
     pub modifier: i8,
 }
 
 impl Skill {
-    pub fn trained(attribute: Attribute) -> Skill {
+    pub fn trained(attribute: AttributeType) -> Skill {
         Skill {
             attribute,
             die: Die::d4,
@@ -18,7 +18,7 @@ impl Skill {
         }
     }
 
-    pub fn untrained(attribute: Attribute) -> Skill {
+    pub fn untrained(attribute: AttributeType) -> Skill {
         Skill {
             attribute,
             die: Die::d4,
@@ -49,13 +49,9 @@ mod tests {
 
     use super::*;
 
-    fn agility() -> Attribute {
-        Attribute::new(Die::d4)
-    }
-
     #[test]
     fn roll_untrained_skill() {
-        let s = Skill::untrained(agility());
+        let s = Skill::untrained(AttributeType::Agility);
         assert!(Regex::new(r"^-?\d+ = -2 \+ \[d4:\d+(\([\d,]+\))?]$")
             .unwrap()
             .is_match(&s.roll().summarize_max()))
@@ -63,7 +59,7 @@ mod tests {
 
     #[test]
     fn roll_wildcard_trained() {
-        let s = Skill::trained(agility());
+        let s = Skill::trained(AttributeType::Agility);
         assert!(
             Regex::new(r"^\d+ = \[d4:\d+(\([\d,]+\))?], \[d6:\d+(\([\d,]+\))?]$")
                 .unwrap()
