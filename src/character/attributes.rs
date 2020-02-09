@@ -1,9 +1,9 @@
 use crate::character::attribute::Attribute;
 
 pub struct Attributes {
-    agility: Attribute,
-    smarts: Attribute,
-    spirit: Attribute,
-    strength: Attribute,
-    vigor: Attribute,
+    pub agility: Attribute,
+    pub smarts: Attribute,
+    pub spirit: Attribute,
+    pub strength: Attribute,
+    pub vigor: Attribute,
 }
