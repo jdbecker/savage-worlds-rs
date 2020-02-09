@@ -4,6 +4,7 @@ pub mod character_trait;
 pub mod dice_result;
 pub mod die;
 pub mod die_result;
+pub mod rank;
 pub mod skill;
 
 #[cfg(test)]
