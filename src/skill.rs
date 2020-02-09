@@ -56,7 +56,7 @@ mod tests {
     #[test]
     fn roll_untrained_skill() {
         let s = Skill::untrained(agility());
-        assert!(Regex::new(r"^\d+ = -2 \+ \[d4:\d+(\([\d,]+\))?]$")
+        assert!(Regex::new(r"^-?\d+ = -2 \+ \[d4:\d+(\([\d,]+\))?]$")
             .unwrap()
             .is_match(&s.roll().summarize_max()))
     }
