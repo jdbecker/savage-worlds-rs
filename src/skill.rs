@@ -3,7 +3,7 @@ use crate::character_trait::CharacterTrait;
 use crate::dice_result::DiceResult;
 use crate::die::Die;
 
-struct Skill {
+pub struct Skill {
     pub attribute: Attribute,
     pub die: Die,
     pub modifier: i8,
