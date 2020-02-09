@@ -7,6 +7,15 @@ pub struct Attribute {
     modifier: u8,
 }
 
+impl Default for Attribute {
+    fn default() -> Self {
+        Attribute {
+            die: Die::d4,
+            modifier: 0,
+        }
+    }
+}
+
 impl Attribute {
     pub fn new(die: Die) -> Attribute {
         Attribute { die, modifier: 0 }
