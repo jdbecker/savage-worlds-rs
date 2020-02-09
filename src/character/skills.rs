@@ -74,3 +74,58 @@ impl Default for Skills {
         }
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    fn assert_core(skill: Skill) {
+        assert_eq!(0, skill.modifier);
+    }
+
+    fn assert_untrained(skill: Skill) {
+        assert_eq!(-2, skill.modifier);
+    }
+
+    #[test]
+    fn check_core_skills() {
+        let s = Skills::default();
+        assert_core(s.athletics);
+        assert_core(s.common_knowledge);
+        assert_core(s.notice);
+        assert_core(s.persuasion);
+        assert_core(s.stealth);
+    }
+
+    #[test]
+    fn check_untrained_skills() {
+        let s = Skills::default();
+        assert_untrained(s.academics);
+        assert_untrained(s.battle);
+        assert_untrained(s.boating);
+        assert_untrained(s.driving);
+        assert_untrained(s.electronics);
+        assert_untrained(s.faith);
+        assert_untrained(s.fighting);
+        assert_untrained(s.focus);
+        assert_untrained(s.gambling);
+        assert_untrained(s.hacking);
+        assert_untrained(s.healing);
+        assert_untrained(s.intimidation);
+        assert_untrained(s.language);
+        assert_untrained(s.occult);
+        assert_untrained(s.performance);
+        assert_untrained(s.piloting);
+        assert_untrained(s.psionics);
+        assert_untrained(s.repair);
+        assert_untrained(s.research);
+        assert_untrained(s.riding);
+        assert_untrained(s.science);
+        assert_untrained(s.shooting);
+        assert_untrained(s.spellcasting);
+        assert_untrained(s.survival);
+        assert_untrained(s.taunt);
+        assert_untrained(s.thievery);
+        assert_untrained(s.weird_science);
+    }
+}
