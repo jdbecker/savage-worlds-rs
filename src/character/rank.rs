@@ -1,3 +1,4 @@
+#[derive(Eq, PartialEq, Debug)]
 pub enum Rank {
     Novice,
     Seasoned,
