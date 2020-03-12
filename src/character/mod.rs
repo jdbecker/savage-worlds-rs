@@ -53,6 +53,7 @@ impl Default for Character {
 
 #[cfg(test)]
 mod tests {
+    use crate::character::character_trait::CharacterTrait;
     use crate::character::rank::Rank;
     use crate::character::Character;
 
@@ -60,5 +61,14 @@ mod tests {
     fn create_char() {
         let c = Character::default();
         assert_eq!(Rank::Novice, c.rank);
+    }
+
+    #[test]
+    fn roll_athletics() {
+        let c = Character::default();
+        c.skills
+            .get("Athletics")
+            .expect("Should have Athletics, it's a core skill!")
+            .roll();
     }
 }
