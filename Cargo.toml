@@ -10,3 +10,4 @@ license-file = "LICENSE-FAN"
 [dependencies]
 rand = "0.7"
 regex = "1"
+rocket = "0.4.5"
